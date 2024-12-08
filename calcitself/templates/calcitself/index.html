@@ -1,0 +1,174 @@
+{% extends 'calcitself/base.html' %}
+
+{% block content %}
+<form method="POST" action="{% url 'index' %}" id="form">
+    {% csrf_token %}
+
+    <div class="container">
+        <div class="inputs mb-2">
+            <div class="row">
+                <select class="form-select inputs-text border-4 border-dark-subtle" aria-label="Default select example"
+                    form="form" name="type">
+                    {% for type in types %}
+                    <option value="{{ type }}">{{ type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="row">
+                <div class="col">
+
+                    <div class="inputs mb-2">
+                        <p class="inputs-text">Упаковка</p>
+                        <div class="list">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="BoxType" id="BoxType2" checked
+                                    value="base">
+                                <label class="form-check-label list-data" for="BoxType2" value="base">
+                                    Обычная
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="BoxType" id="BoxType1"
+                                    value="strong">
+                                <label class="form-check-label list-data" for="BoxType1" value="strong">
+                                    Усиленная (уголки)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="inputs">
+                        <p class="inputs-text"> Длина (см) </p>
+                        <input type="number" name="length" step="0.1" min="0"
+                            class="inputs-input border-bottom border-dark-subtle border-3 dot-to-comma" autofocus
+                            onfocus="var temp_value=this.value; this.value=''; this.value=temp_value" value="60.5">
+                    </div>
+                    <div class="inputs">
+                        <p class="inputs-text"> Ширина (см) </p>
+                        <input type="number" name="width" step="0.1" min="0"
+                            class="inputs-input border-bottom border-dark-subtle border-3 dot-to-comma" autofocus
+                            onfocus="var temp_value=this.value; this.value=''; this.value=temp_value" value="48.5">
+                    </div>
+                    <div class="inputs">
+                        <p class="inputs-text"> Высота (см) </p>
+                        <input type="number" name="height" step="0.1" min="0"
+                            class="inputs-input border-bottom border-dark-subtle border-3 dot-to-comma" autofocus
+                            onfocus="var temp_value=this.value; this.value=''; this.value=temp_value" value="32">
+                    </div>
+                </div>
+                <div class="col">
+
+                    <div class="inputs">
+                        <p class="inputs-text"> Кол-во штук в коробках </p>
+                        <input type="number" name="pieces in box" step="1" min="0"
+                            class="inputs-input border-bottom border-dark-subtle border-3 dot-to-comma" autofocus
+                            onfocus="var temp_value=this.value; this.value=''; this.value=temp_value" value="6">
+                    </div>
+                    <div class="inputs">
+                        <p class="inputs-text"> Общее кол-во </p>
+                        <input type="number" name="pieces" step="1" min="0"
+                            class="inputs-input border-bottom border-dark-subtle border-3 dot-to-comma" autofocus
+                            onfocus="var temp_value=this.value; this.value=''; this.value=temp_value" value="2016">
+                    </div>
+                    <div class="inputs">
+                        <p class="inputs-text"> Вес коробки (кг) </p>
+                        <input type="number" name="weight" step="0.1" min="0"
+                            class="inputs-input border-bottom border-dark-subtle border-3 dot-to-comma" autofocus
+                            onfocus="var temp_value=this.value; this.value=''; this.value=temp_value" value="11.5">
+                    </div>
+                    <div class="inputs">
+                        <p class="inputs-text"> Стоимость за штуку (¥) </p>
+                        <input type="number" name="cost" step="0.1" min="0"
+                            class="inputs-input border-bottom border-dark-subtle border-3 dot-to-comma" autofocus
+                            onfocus="var temp_value=this.value; this.value=''; this.value=temp_value" value="137">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <center>
+        <button type="submit" class="submit border border-2 border-dark">Посчитать</button>
+    </center>
+
+
+</form>
+
+<style>
+    .form-select {
+        margin-bottom: 40px !important;
+    }
+
+    center {
+        margin-bottom: 50px;
+    }
+
+    .checkbox {
+        height: 20px;
+        width: 20px;
+    }
+
+    .submit {
+        background-color: white;
+        width: 225px;
+        height: 50px;
+        animation: submit 2s infinite;
+    }
+
+    .submit:hover {
+        cursor: pointer;
+        background-color: #bdddfc;
+    }
+
+    .submit:focus {
+        outline: none;
+        background-color: #bdddfc;
+    }
+
+    @keyframes submit {
+        0% {
+            box-shadow: none;
+        }
+
+        100% {
+            outline: 15px solid rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    .list-data {
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .inputs {
+        margin-left: 50px;
+        margin-bottom: 40px;
+    }
+
+    .inputs-text {
+        font-family: Roboto Mono;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    input {
+        padding-left: 10px;
+        border: none;
+    }
+
+    .inputs-input {
+        width: 500px;
+        font-size: 20px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+</style>
+{% endblock %}

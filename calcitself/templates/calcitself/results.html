@@ -1,0 +1,109 @@
+{% extends 'calcitself/base.html' %}
+
+{% block content %}
+
+{% load humanize %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="result">
+                <h2>Результат:</h2>
+                <p class="res"> Голая логистика - <span class="money"> {{ history.Logistics_naked|intcomma }} ₽</span> </p>
+                <p class="res"> Полная логистика - <span class="money"> {{ history.Logistics|intcomma }} ₽</span> </p>
+                <p class="res"> Страховка - <span class="money"> {{ history.Insurance|intcomma }} ₽</span> </p>
+                <p class="res"> Упаковка - <span class="money"> {{ history.Packaging|intcomma }} ₽</span> </p>
+                <p class="res"> Разгрузка в МСК - <span class="money"> {{ history.Unloading_at_MSK|intcomma }} ₽</span> </p>
+                <p class="res"> Общая стоимость за единицу - <span class="money"> {{ history.Total_cost_per_unit|intcomma }} ₽</span> </p>
+                <p class="res"> Общая стоимость логистики - <span class="money"> {{ history.Total_logistics_cost|intcomma }} ₽</span> </p>
+                <p class="res"> Упаковка - <span class="money"> {{ history.Total_Packaging|intcomma }} ₽</span> </p>
+                <p class="res"> Страховка - <span class="money"> {{ history.Total_Insurance|intcomma }} ₽</span> </p>
+                <p class="res"> Разгрузка - <span class="money"> {{ history.Total_Unloading|intcomma }} ₽</span> </p>
+                <p class="res"> Общая стоимость партии - <span class="money"> {{ history.Total_cost_of_the_lot|intcomma }} ₽</span> </p>
+                
+            </div>
+        </div>
+        <div class="col">
+
+            <center>
+                <button type="submit" class="submit border border-2 border-dark" onclick="history.back()">Назад</button>
+            </center>
+        </div>
+    </div>
+    </div>
+
+<div class="footer">
+    <p>
+        Сайт сделал Нарынбаев Нурсултан
+        <br>
+        <a href="nnurseultan07@gmail.com">nnurseultan07@gmail.com</a>
+    </p>
+</div>
+
+<style>
+    center {
+        margin-top: 60px;
+    }
+    .res {
+        font-size: x-large;
+        margin-bottom: 15px;
+    }
+    .footer {
+        background-color: #144272;
+        color: white;
+        padding: 20px;
+        padding-bottom: 50px;
+        margin-left: 0px !important;
+    }
+    a {
+        color: white;
+    }
+    h2 {
+        margin-bottom: 20px;
+    }
+    center{
+        margin-bottom: 50px;
+    }
+   .submit {
+        background-color: white;
+        width: 260px;
+        height: 60px;
+        animation: submit 2s infinite;
+    }
+    .submit:hover {
+        cursor: pointer;
+        background-color: #bdddfc;
+    }
+    .submit:focus {
+        outline: none;
+        background-color: #bdddfc;
+    }
+    @keyframes submit {
+        0% {
+            box-shadow: none;
+        }
+
+        100% {
+            outline: 15px solid rgba(255, 255, 255, 0.3);
+        }
+    }
+    .money {
+        font-weight:bold;
+        color: #144272;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 20px;
+    }
+    .footer {
+        margin-left: 50px;
+        padding-bottom: 20px;
+    }
+    .result {
+        margin-left: 50px;
+        margin-bottom: 30px;
+        font-size: 20px;
+    }
+    .card {
+        margin-bottom: 30px;
+    }
+</style>
+{% endblock %}
